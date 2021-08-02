@@ -1,0 +1,14 @@
+{
+    "todos": [
+        {
+            "todo": "Buy some data",
+            "id": "1",
+            "status": 0
+        },
+        {
+            "todo": "Listen do potcast",
+            "id": "1",
+            "status": 1
+        }
+    ]
+}
