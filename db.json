@@ -3,12 +3,12 @@
     {
       "todo": "Read my journal",
       "id": 1,
-      "isCompleted": "false"
+      "isCompleted": "true"
     },
     {
       "todo": "Listen do potcast",
       "id": 2,
-      "isCompleted": "true"
+      "isCompleted": "false"
     },
     {
       "todo": "Buy garri",
@@ -23,7 +23,7 @@
     {
       "todo": "Buy some data",
       "id": 5,
-      "isCompleted": "false"
+      "isCompleted": "true"
     }
   ]
 }

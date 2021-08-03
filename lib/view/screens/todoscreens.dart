@@ -81,7 +81,7 @@ class TodoScreen extends StatelessWidget {
                     CircleAvatar(
                       radius: 10.0,
                       backgroundColor:
-                          todo.isCompleted! ? Colors.green : Colors.red,
+                          todo.isCompleted! ? Colors.red : Colors.green,
                     ),
                   ],
                 ),
