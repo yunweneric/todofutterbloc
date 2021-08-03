@@ -1,14 +1,29 @@
 {
     "todos": [
         {
-            "todo": "Buy some data",
-            "id": "1",
-            "status": 0
+            "todo": "Read my journal",
+            "id": 1,
+            "isCompleted": "false"
         },
         {
             "todo": "Listen do potcast",
-            "id": "1",
-            "status": 1
+            "id": 2,
+            "isCompleted": "true"
+        },
+        {
+            "todo": "Buy garri",
+            "id": 3,
+            "isCompleted": "true"
+        },
+        {
+            "todo": "Buy some data",
+            "id": 4,
+            "isCompleted": "false"
+        },
+        {
+            "todo": "Buy some data",
+            "id": 5,
+            "isCompleted": "true"
         }
     ]
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todofutterbloc/logic/cubits/TodosCubit/todos_cubit.dart';
 import 'package:todofutterbloc/view/routes/routenames.dart';
 
 class TodoScreen extends StatelessWidget {
@@ -6,6 +8,7 @@ class TodoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<TodosCubit>(context).fetchTodos();
     return Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
@@ -27,6 +30,54 @@ class TodoScreen extends StatelessWidget {
                 ),
               )),
               majorspacer(),
+              BlocBuilder<TodosCubit, TodosState>(
+                builder: (context, state) {
+                  if (state is TodosInitial)
+                    return Container(
+                      height: MediaQuery.of(context).size.height,
+                      width: MediaQuery.of(context).size.width,
+                      child: Center(
+                        child: CircularProgressIndicator.adaptive(),
+                      ),
+                    );
+                  final todos = (state as TodosLoaded).todos;
+                  return Container(
+                    child: Column(
+                      children: todos!
+                          .map((todo) => Container(
+                                child: Dismissible(
+                                  key: Key("${todo.id}"),
+                                  child: Column(
+                                    children: [
+                                      Card(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(15.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(todo.todoMessage as String),
+                                              CircleAvatar(
+                                                radius: 10.0,
+                                                backgroundColor:
+                                                    todo.isCompleted == "true"
+                                                        ? Colors.green
+                                                        : Colors.red,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      minorspacer()
+                                    ],
+                                  ),
+                                ),
+                              ))
+                          .toList(),
+                    ),
+                  );
+                },
+              )
             ],
           ),
         ));
