@@ -13,4 +13,13 @@ class ApiService {
       return [];
     }
   }
+
+  Future<bool> patchTodo(Map<String, String> todosPatch, int? id) async {
+    try {
+      await patch(Uri.parse(baseUrl + "/todos/$id"), body: todosPatch);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
 }

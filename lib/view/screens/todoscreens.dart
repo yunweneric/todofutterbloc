@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todofutterbloc/data/model/todo.dart';
 import 'package:todofutterbloc/logic/cubits/TodosCubit/todos_cubit.dart';
 import 'package:todofutterbloc/view/routes/routenames.dart';
 
@@ -44,35 +45,9 @@ class TodoScreen extends StatelessWidget {
                   return Container(
                     child: Column(
                       children: todos!
-                          .map((todo) => Container(
-                                child: Dismissible(
-                                  key: Key("${todo.id}"),
-                                  child: Column(
-                                    children: [
-                                      Card(
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(15.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(todo.todoMessage as String),
-                                              CircleAvatar(
-                                                radius: 10.0,
-                                                backgroundColor:
-                                                    todo.isCompleted == "true"
-                                                        ? Colors.green
-                                                        : Colors.red,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      minorspacer()
-                                    ],
-                                  ),
-                                ),
-                              ))
+                          .map(
+                            (todo) => todosCard(todo, context),
+                          )
                           .toList(),
                     ),
                   );
@@ -81,6 +56,42 @@ class TodoScreen extends StatelessWidget {
             ],
           ),
         ));
+  }
+
+  Widget todosCard(Todo todo, context) {
+    return Container(
+      child: Dismissible(
+        confirmDismiss: (_) async {
+          BlocProvider.of<TodosCubit>(context).changeCompletion(todo);
+          return false;
+        },
+        background: Container(
+          color: Colors.teal,
+        ),
+        key: Key("${todo.id}"),
+        child: Column(
+          children: [
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(todo.todoMessage as String),
+                    CircleAvatar(
+                      radius: 10.0,
+                      backgroundColor:
+                          todo.isCompleted! ? Colors.green : Colors.red,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            minorspacer()
+          ],
+        ),
+      ),
+    );
   }
 
   SizedBox minorspacer() {
