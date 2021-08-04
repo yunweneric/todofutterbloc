@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todofutterbloc/data/model/todo.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:todofutterbloc/logic/cubits/AddTodo/addtodo_cubit.dart';
 import 'package:todofutterbloc/view/widgets/constats.dart';
 
@@ -16,6 +16,17 @@ class AddTodo extends StatelessWidget {
           listener: (context, state) {
             if (state is TodoAdded) {
               Navigator.pop(context);
+            }
+            if (state is AddtodoError) {
+              Fluttertoast.showToast(
+                msg: state.error as String,
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.TOP,
+                timeInSecForIosWeb: 1,
+                backgroundColor: Colors.red[500],
+                textColor: Colors.white,
+                fontSize: 14.0,
+              );
             }
           },
           child: Container(
@@ -35,7 +46,7 @@ class AddTodo extends StatelessWidget {
                   onChanged: (_) {
                     // print(todoController.text);
                   },
-                  autofocus: true,
+                  // autofocus: true,
                   decoration: InputDecoration(
                     hintText: "Enter your todo",
                     border: OutlineInputBorder(

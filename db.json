@@ -29,6 +29,21 @@
       "todo": "This is the initial todo",
       "isCompleted": "true",
       "id": 6
+    },
+    {
+      "todo": "Buy eru from the market during break!",
+      "isCompleted": "false",
+      "id": 7
+    },
+    {
+      "todo": "Buy fufu corm",
+      "isCompleted": "false",
+      "id": 8
+    },
+    {
+      "todo": "added",
+      "isCompleted": "false",
+      "id": 9
     }
   ]
 }
