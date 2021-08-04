@@ -24,6 +24,11 @@
       "todo": "Buy some data",
       "id": 5,
       "isCompleted": "true"
+    },
+    {
+      "todo": "This is the initial todo",
+      "isCompleted": "true",
+      "id": 6
     }
   ]
 }

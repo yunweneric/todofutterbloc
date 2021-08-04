@@ -1,3 +1,4 @@
+import 'package:flutter/painting.dart';
 import 'package:todofutterbloc/data/ApiService.dart';
 import 'package:todofutterbloc/data/model/todo.dart';
 
@@ -14,5 +15,11 @@ class Repository {
   Future<bool>? changeCompletion(bool? isCompleted, int? id) async {
     final todosPatch = {"isCompleted": isCompleted.toString()};
     return await apiService!.patchTodo(todosPatch, id);
+  }
+
+  Future<Todo> addTodo(String message) async {
+    final todoObj = {"todo": message, "isCompleted": "false"};
+    final todoMap = await apiService!.addTodo(todoObj);
+    return Todo.fromJson(todoMap);
   }
 }
